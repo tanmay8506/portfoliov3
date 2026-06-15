@@ -9,7 +9,7 @@ export interface Project {
   category: "Agentic AI" | "Full-Stack" | "ML + Data";
   github: string;
   demo?: string;
-  innerWidget: "algogenie" | "litrev" | "personabot" | "visionary" | "hr" | "studyai";
+  innerWidget: "algogenie" | "litrev" | "personabot" | "visionary" | "hr" | "studyai" | "vibe-coder" | "langgraph-hitl" | "rag-queue" | "the-ink" | "flight-finder";
   featured?: boolean;
   gridArea?: string;
 }
@@ -63,6 +63,57 @@ export const CONFIG = {
       github: "https://github.com/tanmay8506",
       innerWidget: "algogenie",
       featured: true,
+    },
+    {
+      id: "vibe-coder",
+      title: "Vibe Coder",
+      description:
+        "Voice-controlled AI coding assistant. Speaks coding requests, runs a LangGraph agent workflow, and reads responses back using TTS.",
+      stack: ["LangGraph", "Python", "SpeechRecognition", "gTTS"],
+      category: "Agentic AI",
+      github: "https://github.com/tanmay8506",
+      innerWidget: "vibe-coder",
+      featured: true,
+    },
+    {
+      id: "langgraph-hitl",
+      title: "LangGraph HITL",
+      description:
+        "Human-in-the-Loop agent orchestration. Pauses execution for user approval on sensitive tools like email and file deletion using state checkpointers.",
+      stack: ["LangGraph", "Python", "Groq", "MemorySaver"],
+      category: "Agentic AI",
+      github: "https://github.com/tanmay8506",
+      innerWidget: "langgraph-hitl",
+    },
+    {
+      id: "rag-queue",
+      title: "Asynchronous RAG Ingestion Queue",
+      description:
+        "Background document ingestion workflow. A web server queues parsing jobs, and background workers handle PDF chunking and embedding storage in ChromaDB.",
+      stack: ["ChromaDB", "LangChain", "Python", "HuggingFace"],
+      category: "ML + Data",
+      github: "https://github.com/tanmay8506",
+      innerWidget: "rag-queue",
+    },
+    {
+      id: "the-ink",
+      title: "The Ink",
+      description:
+        "Full-stack publishing CMS built with Flask. Features secure hashed user auth, role permissions (Admin post creation), and gravatar comments.",
+      stack: ["Flask", "SQLAlchemy", "SQLite", "Flask-Login"],
+      category: "Full-Stack",
+      github: "https://github.com/tanmay8506",
+      innerWidget: "the-ink",
+    },
+    {
+      id: "flight-finder",
+      title: "Intelligent Flight Price Alert System",
+      description:
+        "Monitors Delhi flight pricing deals via SerpApi (Google Flights) and Sheety. Emails users round-trip discount bulletins under budget thresholds.",
+      stack: ["Python", "SerpApi", "Sheety", "Google Sheets"],
+      category: "Full-Stack",
+      github: "https://github.com/tanmay8506",
+      innerWidget: "flight-finder",
     },
     {
       id: "litrev",

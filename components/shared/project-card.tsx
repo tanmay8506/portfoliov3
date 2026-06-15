@@ -74,6 +74,11 @@ export function ProjectCard({ project }: ProjectCardProps) {
       {/* Unique Custom Inner Widget Visual (No images!) */}
       <div className="mt-6 w-full h-44 rounded-md border border-hairline/40 bg-canvas overflow-hidden relative flex items-center justify-center">
         {project.innerWidget === "algogenie" && <AlgoGenieWidget />}
+        {project.innerWidget === "vibe-coder" && <VibeCoderWidget />}
+        {project.innerWidget === "langgraph-hitl" && <LangGraphHitlWidget />}
+        {project.innerWidget === "rag-queue" && <RagQueueWidget />}
+        {project.innerWidget === "the-ink" && <TheInkWidget />}
+        {project.innerWidget === "flight-finder" && <FlightFinderWidget />}
         {project.innerWidget === "litrev" && <LitRevWidget />}
         {project.innerWidget === "personabot" && <PersonaBotWidget />}
         {project.innerWidget === "visionary" && <VisionaryWidget />}
@@ -384,6 +389,196 @@ function StudyAiWidget() {
           {tag}
         </span>
       ))}
+    </div>
+  );
+}
+
+/* ==========================================
+   7. Vibe Coder Widget: Voice agent loop
+   ========================================== */
+function VibeCoderWidget() {
+  const [stage, setStage] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setStage((prev) => (prev + 1) % 4);
+    }, 2000);
+    return () => clearInterval(interval);
+  }, []);
+
+  return (
+    <div className="w-full h-full p-4 font-mono text-[11px] flex flex-col justify-center space-y-2 select-none">
+      <div className="flex items-center space-x-2 text-ink-subtle">
+        <span className={cn("w-2 h-2 rounded-full", stage === 0 ? "bg-accent animate-ping" : "bg-hairline")} />
+        <span className={stage === 0 ? "text-accent font-semibold" : ""}>🎤 Listening...</span>
+      </div>
+      {stage >= 1 && (
+        <div className="text-ink animate-fadeIn">
+          🗣️ &quot;Create counter in React&quot;
+        </div>
+      )}
+      {stage >= 2 && (
+        <div className="text-accent-hover font-bold animate-fadeIn">
+          🤖 Working: generating file...
+        </div>
+      )}
+      {stage >= 3 && (
+        <div className="text-success font-semibold flex items-center space-x-1.5 animate-fadeIn">
+          <span>🔊 Response: &quot;Done! check workspace&quot;</span>
+        </div>
+      )}
+    </div>
+  );
+}
+
+/* ==========================================
+   8. LangGraph HITL Widget: Manual approval
+   ========================================== */
+function LangGraphHitlWidget() {
+  const [approved, setApproved] = useState(false);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setApproved((prev) => !prev);
+    }, 2500);
+    return () => clearInterval(timer);
+  }, []);
+
+  return (
+    <div className="w-full h-full p-4 flex flex-col items-center justify-center font-sans text-xs select-none">
+      <div className="w-full max-w-[220px] bg-surface-2 border border-hairline rounded-md p-3 space-y-2.5 shadow-sm text-center">
+        <span className="text-[10px] text-mono text-ink-subtle uppercase tracking-wider block">
+          Approval Required
+        </span>
+        <div className="text-[11px] text-ink font-mono bg-canvas py-1 px-2 rounded border border-hairline truncate">
+          delete_file(&quot;data.csv&quot;)
+        </div>
+        <div className="flex justify-center space-x-2">
+          <button
+            className={cn(
+              "px-3 py-1 text-[10px] font-semibold rounded-sm transition-all duration-300",
+              approved
+                ? "bg-success text-ink"
+                : "bg-surface-3 border border-hairline text-ink-subtle hover:text-ink"
+            )}
+            disabled
+          >
+            {approved ? "Approved ✓" : "Approve"}
+          </button>
+          <button
+            className="px-3 py-1 text-[10px] font-semibold rounded-sm bg-surface-3 border border-hairline text-ink-subtle"
+            disabled
+          >
+            Reject
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+/* ==========================================
+   9. RAG Queue Widget: Async ingestion
+   ========================================== */
+function RagQueueWidget() {
+  const [status, setStatus] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setStatus((prev) => (prev + 1) % 4);
+    }, 2000);
+    return () => clearInterval(interval);
+  }, []);
+
+  return (
+    <div className="w-full h-full p-4 font-mono text-[11px] flex flex-col justify-center space-y-2.5 select-none">
+      <div className="flex justify-between items-center text-ink-subtle">
+        <span>Job Queue</span>
+        <span className="text-accent">#8506</span>
+      </div>
+      <div className="space-y-1.5">
+        <div className="flex justify-between">
+          <span>Document:</span>
+          <span className="text-ink font-semibold">manual.pdf</span>
+        </div>
+        <div className="flex justify-between items-center">
+          <span>Status:</span>
+          {status === 0 && <span className="text-ink-subtle">Queued in server...</span>}
+          {status === 1 && <span className="text-accent-hover font-semibold">Chunking PDF (80%)</span>}
+          {status === 2 && <span className="text-accent animate-pulse">Embedding [HF model]</span>}
+          {status === 3 && <span className="text-success font-semibold">Saved in ChromaDB ✓</span>}
+        </div>
+      </div>
+      <div className="w-full h-1 bg-surface-3 rounded-full overflow-hidden">
+        <div
+          className="h-full bg-accent transition-all duration-500"
+          style={{ width: `${(status + 1) * 25}%` }}
+        />
+      </div>
+    </div>
+  );
+}
+
+/* ==========================================
+   10. The Ink Widget: Blogging interface
+   ========================================== */
+function TheInkWidget() {
+  return (
+    <div className="w-full h-full p-4 flex flex-col justify-center space-y-2 font-sans text-xs select-none">
+      <div className="bg-surface-2 border border-hairline rounded p-2.5 space-y-1.5 font-mono text-[10px]">
+        <div className="flex justify-between border-b border-hairline/60 pb-1 text-ink-subtle">
+          <span>Flask CMS Editor</span>
+          <span className="text-success">Admin Verified</span>
+        </div>
+        <div className="text-ink">
+          <span className="text-accent-hover font-semibold">Title:</span> My First Blog Post
+        </div>
+        <div className="text-ink-muted leading-relaxed">
+          <span className="text-accent-hover font-semibold">Body:</span> Writing full-stack blog in Flask...
+        </div>
+      </div>
+      <div className="flex justify-between items-center text-[10px] text-ink-subtle px-1">
+        <span>SQLAlchemy Relational Schema</span>
+        <span className="text-accent">Gravatar Enabled</span>
+      </div>
+    </div>
+  );
+}
+
+/* ==========================================
+   11. Flight Finder Widget: Price alerts
+   ========================================== */
+function FlightFinderWidget() {
+  const [pulse, setPulse] = useState(false);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setPulse((p) => !p);
+    }, 1500);
+    return () => clearInterval(interval);
+  }, []);
+
+  return (
+    <div className="w-full h-full p-4 flex flex-col justify-center space-y-2 font-sans text-xs select-none">
+      <div className="flex justify-between items-baseline">
+        <span className="text-[10px] text-mono text-accent uppercase font-bold">DEL ✈️ LHR (London)</span>
+        <span className="text-[9px] text-mono text-ink-subtle">SerpApi Tracker</span>
+      </div>
+      <div className="grid grid-cols-2 gap-2 bg-surface-2 p-2 rounded border border-hairline">
+        <div>
+          <span className="text-[9px] text-ink-subtle block">Budget Limit</span>
+          <span className="text-ink font-semibold">Rs. 65,000</span>
+        </div>
+        <div>
+          <span className="text-[9px] text-ink-subtle block">Cheapest Deal</span>
+          <span className={cn("font-bold transition-all duration-300", pulse ? "text-success scale-105" : "text-ink")}>
+            Rs. 58,900
+          </span>
+        </div>
+      </div>
+      <div className="text-center font-mono text-[10px] text-success bg-success/10 py-1 rounded border border-success/20 animate-pulse">
+        🚨 Price Drop Detected! Email sent.
+      </div>
     </div>
   );
 }

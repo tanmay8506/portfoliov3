@@ -16,6 +16,16 @@ export function Projects() {
     let gridArea = "";
     if (proj.id === "algogenie") {
       gridArea = "md:col-span-2 md:row-span-1";
+    } else if (proj.id === "vibe-coder") {
+      gridArea = "md:col-span-2 md:row-span-1";
+    } else if (proj.id === "langgraph-hitl") {
+      gridArea = "md:col-span-1 md:row-span-1";
+    } else if (proj.id === "rag-queue") {
+      gridArea = "md:col-span-1 md:row-span-1";
+    } else if (proj.id === "the-ink") {
+      gridArea = "md:col-span-1 md:row-span-1";
+    } else if (proj.id === "flight-finder") {
+      gridArea = "md:col-span-1 md:row-span-1";
     } else if (proj.id === "litrev") {
       gridArea = "md:col-span-1 md:row-span-1";
     } else if (proj.id === "personabot") {
