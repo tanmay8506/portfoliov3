@@ -61,7 +61,7 @@ export function Skills() {
               <h3 className="text-headline font-semibold text-ink-muted">
                 Telemetry Log
               </h3>
-              <div className="bg-surface-1 border border-hairline rounded-xl p-5 font-mono text-body-sm text-ink-muted space-y-3.5 shadow-md">
+              <div className="bg-surface-1 border border-hairline rounded-xl p-5 font-mono text-body-sm text-ink-muted space-y-3.5">
                 <div className="flex items-center space-x-2 border-b border-hairline/50 pb-2">
                   <Terminal className="w-4 h-4 text-accent" />
                   <span className="text-ink font-semibold">sys_agent_telemetry.log</span>
