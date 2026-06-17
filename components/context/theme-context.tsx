@@ -28,11 +28,11 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
   useEffect(() => {
     if (!mounted) return;
     
-    // Toggle body class based on theme
+    // Toggle html class based on theme
     if (theme === "dark") {
-      document.body.classList.add("theme-dark");
+      document.documentElement.classList.add("theme-dark");
     } else {
-      document.body.classList.remove("theme-dark");
+      document.documentElement.classList.remove("theme-dark");
     }
   }, [theme, mounted]);
 

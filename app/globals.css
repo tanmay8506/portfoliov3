@@ -28,9 +28,6 @@
 
 /* Default Theme: Light Mode (Google Antigravity palette) */
 :root {
-  background-color: #f8f9fc;
-  color: #121317;
-
   --canvas: #f8f9fc;
   --surface-1: #ffffff;
   --surface-2: #eff2f7;
@@ -41,6 +38,9 @@
   --ink-muted: #2f3034;
   --ink-subtle: #6a6a71;
   --ink-tertiary: #aab1cc;
+
+  background-color: var(--canvas);
+  color: var(--ink);
 }
 
 /* Dark Theme Selector */
