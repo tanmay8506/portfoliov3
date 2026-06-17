@@ -58,7 +58,7 @@ export function Projects() {
             {/* Rotating build badge */}
             <RotatingBadge />
             <h2 className="text-display-lg font-semibold text-ink tracking-tight">
-              Selected Work
+              Featured Projects
             </h2>
           </div>
 
