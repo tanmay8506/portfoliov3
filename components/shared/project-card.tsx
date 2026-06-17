@@ -14,7 +14,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
   return (
     <div
       className={cn(
-        "group relative flex flex-col justify-between overflow-hidden bg-surface-1 border border-hairline rounded-lg p-6 transition-all duration-300 hover:bg-surface-2 hover:border-hairline-strong",
+        "group relative flex flex-col justify-between overflow-hidden bg-surface-1 border border-hairline rounded-xl p-6 transition-all duration-300 hover:bg-surface-2 hover:border-hairline-strong",
         project.gridArea || ""
       )}
     >

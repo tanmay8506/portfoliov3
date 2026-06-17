@@ -34,12 +34,12 @@ export function Contact() {
   return (
     <section
       id="contact"
-      className="py-24 max-w-[1280px] mx-auto px-6 select-none font-sans scroll-mt-14"
+      className="w-full bg-canvas theme-dark py-24 select-none font-sans scroll-mt-14"
     >
-      <div className="flex flex-col space-y-12">
+      <div className="max-w-[1280px] mx-auto px-6 w-full flex flex-col space-y-12">
         {/* Title */}
         <div>
-          <h2 className="text-display-lg font-semibold text-ink tracking-tight">
+          <h2 className="text-display-lg font-semibold text-ink tracking-tight caret-cursor">
             Contact
           </h2>
         </div>
@@ -76,7 +76,7 @@ export function Contact() {
           </div>
 
           {/* Right Column: Contact Form (7 cols) */}
-          <div className="md:col-span-7 bg-surface-1 border border-hairline rounded-xl p-6 md:p-8 shadow-lg">
+          <div className="md:col-span-7 bg-surface-1 border border-hairline rounded-xl p-6 md:p-8">
             {status === "success" ? (
               <div className="flex flex-col items-center justify-center py-12 text-center space-y-4 animate-scaleIn">
                 <CheckCircle className="w-12 h-12 text-success" />
@@ -106,6 +106,7 @@ export function Contact() {
                     value={name}
                     onChange={(e) => setName(e.target.value)}
                     disabled={status === "submitting"}
+                    className="rounded-full px-5 h-11"
                   />
                 </div>
 
@@ -125,6 +126,7 @@ export function Contact() {
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     disabled={status === "submitting"}
+                    className="rounded-full px-5 h-11"
                   />
                 </div>
 
@@ -143,6 +145,7 @@ export function Contact() {
                     value={message}
                     onChange={(e) => setMessage(e.target.value)}
                     disabled={status === "submitting"}
+                    className="rounded-xl p-4 min-h-32"
                   />
                 </div>
 

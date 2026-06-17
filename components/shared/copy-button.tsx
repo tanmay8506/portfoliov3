@@ -38,7 +38,7 @@ export function CopyButton({ textToCopy, className }: CopyButtonProps) {
       onClick={handleCopy}
       type="button"
       className={cn(
-        "inline-flex items-center space-x-2 px-3.5 py-2 rounded-md bg-surface-2 border border-hairline hover:bg-surface-3 hover:border-hairline-strong active:scale-98 transition-all duration-200 text-body-sm font-medium text-ink-muted hover:text-ink cursor-pointer select-none",
+        "inline-flex items-center space-x-2 px-3.5 py-2 rounded-full bg-surface-2 border border-hairline hover:bg-surface-3 hover:border-hairline-strong active:scale-98 transition-all duration-200 text-body-sm font-medium text-ink-muted hover:text-ink cursor-pointer select-none",
         copied && "border-success/30 hover:border-success/50",
         className
       )}

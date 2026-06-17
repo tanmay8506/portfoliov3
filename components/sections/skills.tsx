@@ -13,9 +13,9 @@ export function Skills() {
   return (
     <section
       id="skills"
-      className="py-24 max-w-[1280px] mx-auto px-6 select-none font-sans scroll-mt-14"
+      className="w-full bg-canvas border-b border-hairline py-24 select-none font-sans scroll-mt-14"
     >
-      <div className="flex flex-col space-y-12">
+      <div className="max-w-[1280px] mx-auto px-6 w-full flex flex-col space-y-12">
         {/* Title */}
         <div>
           <h2 className="text-display-lg font-semibold text-ink tracking-tight">

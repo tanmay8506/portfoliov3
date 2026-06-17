@@ -49,9 +49,9 @@ export function Projects() {
   return (
     <section
       id="projects"
-      className="py-24 max-w-[1280px] mx-auto px-6 select-none font-sans scroll-mt-14"
+      className="w-full bg-canvas theme-dark border-b border-hairline py-24 select-none font-sans scroll-mt-14"
     >
-      <div className="flex flex-col space-y-8">
+      <div className="max-w-[1280px] mx-auto px-6 w-full flex flex-col space-y-8">
         {/* Header Block: Rotating badge + H2 */}
         <div className="flex flex-col space-y-4 md:flex-row md:items-end md:justify-between md:space-y-0">
           <div className="flex flex-col space-y-2">

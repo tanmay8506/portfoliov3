@@ -16,8 +16,11 @@ function seededRandom(seed: number) {
 interface Particle {
   x: number;
   y: number;
-  vx: number;
-  vy: number;
+  angle: number;
+  speed: number;
+  orbitRadius: number;
+  centerIndex: number;
+  color: string;
   radius: number;
 }
 
@@ -41,39 +44,51 @@ export function CanvasBackground() {
     const SEED = 8506;
     const random = seededRandom(SEED);
 
-    // Determine particle count based on screen width & system hardware
+    // Dynamic particle count based on screen width
     const getParticleCount = (w: number) => {
-      let count = 80;
+      let count = 120;
       if (w < 768) {
-        count = 25;
+        count = 45;
       } else if (w < 1024) {
-        count = 40;
+        count = 75;
       }
-
-      // Check low-end devices
-      if (
-        typeof navigator !== "undefined" &&
-        navigator.hardwareConcurrency &&
-        navigator.hardwareConcurrency < 4
-      ) {
-        count = Math.min(count, 20);
-      }
-
       return count;
     };
 
     const initParticles = (w: number, h: number) => {
       const count = getParticleCount(w);
       const newParticles: Particle[] = [];
+      
+      // We define 3 gravity centers
+      const centersCount = 3;
+
+      const colors = [
+        "rgba(66, 133, 244, 0.28)",  // Google Blue
+        "rgba(219, 68, 85, 0.22)",   // Google Red
+        "rgba(138, 143, 152, 0.25)", // Slate Gray
+        "rgba(247, 248, 248, 0.25)"  // Ink White/Light
+      ];
 
       for (let i = 0; i < count; i++) {
-        // Generate reproducible positions and velocities
+        const centerIndex = Math.floor(random() * centersCount);
+        
+        // Random orbit radius between 50px and 450px
+        const maxRadius = Math.min(w, h) * 0.45;
+        const orbitRadius = 40 + random() * (maxRadius - 40);
+        
+        // Angular velocity (orbit speed) - slow and fluid
+        const speed = (0.0008 + random() * 0.0012) * (random() > 0.5 ? 1 : -1);
+        const angle = random() * Math.PI * 2;
+
         newParticles.push({
-          x: random() * w,
-          y: random() * h,
-          vx: (random() - 0.5) * 0.4,
-          vy: (random() - 0.5) * 0.4,
-          radius: 1.5 + random() * 1.5, // 1.5px to 3.0px
+          x: w * 0.5,
+          y: h * 0.5,
+          angle,
+          speed,
+          orbitRadius,
+          centerIndex,
+          color: colors[Math.floor(random() * colors.length)],
+          radius: 1.2 + random() * 1.6, // 1.2px to 2.8px
         });
       }
 
@@ -109,36 +124,34 @@ export function CanvasBackground() {
     const draw = () => {
       if (!ctx || !canvas) return;
 
-      // Clear with very faint transparency or complete clear
+      // Clear the canvas
       ctx.clearRect(0, 0, width, height);
 
-      // Draw lines first
+      const centers = [
+        { x: width * 0.5, y: height * 0.5 },
+        { x: width * 0.22, y: height * 0.4 },
+        { x: width * 0.78, y: height * 0.6 }
+      ];
+
+      // 1. Draw faint concentric orbit paths
       ctx.lineWidth = 1;
-      const inkColor = "247, 248, 248"; // matches --color-ink rgb
+      centers.forEach((center, idx) => {
+        // Different orbit rings depending on center index
+        const rings = idx === 0 ? [100, 220, 360, 500] : [120, 240];
+        
+        rings.forEach((r) => {
+          // Extremely subtle transparent hairline circles
+          ctx.strokeStyle = "rgba(138, 143, 152, 0.05)";
+          ctx.beginPath();
+          ctx.arc(center.x, center.y, r, 0, Math.PI * 2);
+          ctx.stroke();
+        });
+      });
 
-      for (let i = 0; i < particles.length; i++) {
-        const p1 = particles[i];
-        for (let j = i + 1; j < particles.length; j++) {
-          const p2 = particles[j];
-          const dx = p1.x - p2.x;
-          const dy = p1.y - p2.y;
-          const dist = Math.hypot(dx, dy);
-
-          if (dist < 120) {
-            const alpha = (1 - dist / 120) * 0.12;
-            ctx.strokeStyle = `rgba(${inkColor}, ${alpha})`;
-            ctx.beginPath();
-            ctx.moveTo(p1.x, p1.y);
-            ctx.lineTo(p2.x, p2.y);
-            ctx.stroke();
-          }
-        }
-      }
-
-      // Draw particles
+      // 2. Draw active particles
       for (let i = 0; i < particles.length; i++) {
         const p = particles[i];
-        ctx.fillStyle = `rgba(${inkColor}, 0.2)`;
+        ctx.fillStyle = p.color;
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
         ctx.fill();
@@ -147,39 +160,40 @@ export function CanvasBackground() {
 
     const update = () => {
       const mouse = mouseRef.current;
+      const centers = [
+        { x: width * 0.5, y: height * 0.5 },
+        { x: width * 0.22, y: height * 0.4 },
+        { x: width * 0.78, y: height * 0.6 }
+      ];
 
       for (let i = 0; i < particles.length; i++) {
         const p = particles[i];
+        const center = centers[p.centerIndex] || centers[0];
 
-        // Move particle
-        p.x += p.vx;
-        p.y += p.vy;
+        // Orbit around gravity center
+        p.angle += p.speed;
 
-        // Bounce on boundaries
-        if (p.x < 0 || p.x > width) p.vx *= -1;
-        if (p.y < 0 || p.y > height) p.vy *= -1;
+        let targetX = center.x + Math.cos(p.angle) * p.orbitRadius;
+        let targetY = center.y + Math.sin(p.angle) * p.orbitRadius;
 
-        // Keep inside boundaries after bounce
-        if (p.x < 0) p.x = 0;
-        if (p.x > width) p.x = width;
-        if (p.y < 0) p.y = 0;
-        if (p.y > height) p.y = height;
-
-        // Mouse interaction: soft repel
+        // Mouse repulsion force calculations
         if (mouse.active) {
-          const dx = p.x - mouse.x;
-          const dy = p.y - mouse.y;
+          const dx = targetX - mouse.x;
+          const dy = targetY - mouse.y;
           const dist = Math.hypot(dx, dy);
 
-          if (dist < 150) {
-            // Repel force: stronger when closer, max force 0.3
-            const force = (1 - dist / 150) * 0.3;
-            // Normalize direction vector
+          if (dist < 140) {
+            // Push outwards, stronger when closer
+            const force = (1 - dist / 140) * 35;
             const angle = Math.atan2(dy, dx);
-            p.x += Math.cos(angle) * force * 2;
-            p.y += Math.sin(angle) * force * 2;
+            targetX += Math.cos(angle) * force;
+            targetY += Math.sin(angle) * force;
           }
         }
+
+        // Spring acceleration towards target coordinates
+        p.x += (targetX - p.x) * 0.06;
+        p.y += (targetY - p.y) * 0.06;
       }
     };
 
@@ -225,7 +239,7 @@ export function CanvasBackground() {
   return (
     <canvas
       ref={canvasRef}
-      className="absolute inset-0 pointer-events-none opacity-30 transition-opacity duration-1000"
+      className="fixed inset-0 pointer-events-none opacity-40 transition-opacity duration-1000"
       style={{ zIndex: 1 }}
     />
   );

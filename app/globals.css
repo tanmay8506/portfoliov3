@@ -1,16 +1,16 @@
 @import "tailwindcss";
 
 @theme {
-  --color-canvas: #010102;
-  --color-surface-1: #0f1011;
-  --color-surface-2: #141516;
-  --color-surface-3: #18191a;
-  --color-hairline: #23252a;
-  --color-hairline-strong: #34343a;
-  --color-ink: #f7f8f8;
-  --color-ink-muted: #d0d6e0;
-  --color-ink-subtle: #8a8f98;
-  --color-ink-tertiary: #62666d;
+  --color-canvas: var(--canvas);
+  --color-surface-1: var(--surface-1);
+  --color-surface-2: var(--surface-2);
+  --color-surface-3: var(--surface-3);
+  --color-hairline: var(--hairline);
+  --color-hairline-strong: var(--hairline-strong);
+  --color-ink: var(--ink);
+  --color-ink-muted: var(--ink-muted);
+  --color-ink-subtle: var(--ink-subtle);
+  --color-ink-tertiary: var(--ink-tertiary);
   --color-accent: #5e6ad2;
   --color-accent-hover: #828fff;
   --color-accent-focus: #5e69d1;
@@ -26,17 +26,43 @@
   --radius-xl: 16px;
 }
 
-/* Base resets & scrollbars */
+/* Default Theme: Light Mode (Google Antigravity palette) */
 :root {
-  background-color: #010102;
-  color: #f7f8f8;
+  background-color: #f8f9fc;
+  color: #121317;
+
+  --canvas: #f8f9fc;
+  --surface-1: #ffffff;
+  --surface-2: #eff2f7;
+  --surface-3: #e6eaf0;
+  --hairline: rgba(33, 34, 38, 0.08);
+  --hairline-strong: rgba(33, 34, 38, 0.16);
+  --ink: #121317;
+  --ink-muted: #2f3034;
+  --ink-subtle: #6a6a71;
+  --ink-tertiary: #aab1cc;
+}
+
+/* Dark Theme Selector */
+.theme-dark {
+  --canvas: #010102;
+  --surface-1: #0f1011;
+  --surface-2: #141516;
+  --surface-3: #18191a;
+  --hairline: #23252a;
+  --hairline-strong: #34343a;
+  --ink: #f7f8f8;
+  --ink-muted: #d0d6e0;
+  --ink-subtle: #8a8f98;
+  --ink-tertiary: #62666d;
 }
 
 body {
-  background-color: var(--color-canvas);
-  color: var(--color-ink);
+  background-color: var(--canvas);
+  color: var(--ink);
   font-family: var(--font-sans);
   overflow-x: hidden;
+  transition: background-color 0.4s cubic-bezier(0.23, 1, 0.32, 1), color 0.4s cubic-bezier(0.23, 1, 0.32, 1);
 }
 
 /* Custom premium scrollbar */
@@ -143,5 +169,19 @@ body {
   font-size: 0.875rem;
   letter-spacing: 0;
   line-height: 1.5;
+}
+
+/* Caret Cursor Blink Animation */
+@keyframes caret-blink {
+  from, to { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+.caret-cursor::after {
+  content: " |";
+  display: inline-block;
+  color: var(--color-accent);
+  animation: caret-blink 1.1s step-end infinite;
+  font-weight: 400;
 }
 

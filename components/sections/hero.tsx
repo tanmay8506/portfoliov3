@@ -39,9 +39,9 @@ export function Hero() {
   return (
     <section
       id="hero"
-      className="relative min-h-[100dvh] flex items-center justify-center pt-20 pb-16 overflow-hidden max-w-[1280px] mx-auto px-6"
+      className="w-full bg-canvas border-b border-hairline relative min-h-[100dvh] flex items-center justify-center pt-20 pb-16 overflow-hidden"
     >
-      <div className="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12 items-center w-full z-10">
+      <div className="max-w-[1280px] mx-auto px-6 w-full grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12 items-center z-10">
         {/* Left Column (55% / 7 cols) */}
         <motion.div
           className="flex flex-col space-y-6 md:col-span-7 text-left"
@@ -60,7 +60,7 @@ export function Hero() {
             variants={itemVariants}
           >
             Building AI Agents <br />
-            <span className="text-accent">That Actually Work.</span>
+            <span className="text-accent caret-cursor">That Actually Work.</span>
           </motion.h1>
 
           {/* Element 3: Subheading */}
