@@ -26,6 +26,8 @@ export function Projects() {
       gridArea = "md:col-span-1 md:row-span-1";
     } else if (proj.id === "flight-finder") {
       gridArea = "md:col-span-1 md:row-span-1";
+    } else if (proj.id === "arm-artistry") {
+      gridArea = "md:col-span-2 md:row-span-1";
     } else if (proj.id === "litrev") {
       gridArea = "md:col-span-1 md:row-span-1";
     } else if (proj.id === "personabot") {

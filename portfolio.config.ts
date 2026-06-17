@@ -9,7 +9,7 @@ export interface Project {
   category: "Agentic AI" | "Full-Stack" | "ML + Data";
   github: string;
   demo?: string;
-  innerWidget: "algogenie" | "litrev" | "personabot" | "visionary" | "hr" | "studyai" | "vibe-coder" | "langgraph-hitl" | "rag-queue" | "the-ink" | "flight-finder";
+  innerWidget: "algogenie" | "litrev" | "personabot" | "visionary" | "hr" | "studyai" | "vibe-coder" | "langgraph-hitl" | "rag-queue" | "the-ink" | "flight-finder" | "arm-artistry";
   featured?: boolean;
   gridArea?: string;
 }
@@ -114,6 +114,17 @@ export const CONFIG = {
       category: "Full-Stack",
       github: "https://github.com/tanmay8506",
       innerWidget: "flight-finder",
+    },
+    {
+      id: "arm-artistry",
+      title: "ARM Artistry",
+      description:
+        "Commercial makeup atelier booking system. Features Supabase Auth, PostgreSQL schema with atomic hold slot reservation transactions, and design guidelines inspired by Lamborghini.",
+      stack: ["Next.js", "Supabase", "PostgreSQL", "Tailwind CSS", "Playwright"],
+      category: "Full-Stack",
+      github: "https://github.com/tanmay8506",
+      innerWidget: "arm-artistry",
+      featured: true,
     },
     {
       id: "litrev",

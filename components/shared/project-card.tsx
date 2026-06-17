@@ -79,6 +79,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
         {project.innerWidget === "rag-queue" && <RagQueueWidget />}
         {project.innerWidget === "the-ink" && <TheInkWidget />}
         {project.innerWidget === "flight-finder" && <FlightFinderWidget />}
+        {project.innerWidget === "arm-artistry" && <ArmArtistryWidget />}
         {project.innerWidget === "litrev" && <LitRevWidget />}
         {project.innerWidget === "personabot" && <PersonaBotWidget />}
         {project.innerWidget === "visionary" && <VisionaryWidget />}
@@ -578,6 +579,73 @@ function FlightFinderWidget() {
       </div>
       <div className="text-center font-mono text-[10px] text-success bg-success/10 py-1 rounded border border-success/20 animate-pulse">
         🚨 Price Drop Detected! Email sent.
+      </div>
+    </div>
+  );
+}
+
+/* ==========================================
+   12. ARM Artistry Widget: Lamborghini Booking
+   ========================================== */
+function ArmArtistryWidget() {
+  const [bookingStep, setBookingStep] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setBookingStep((prev) => (prev + 1) % 4);
+    }, 2000);
+    return () => clearInterval(timer);
+  }, []);
+
+  return (
+    <div className="w-full h-full p-4 flex flex-col justify-center space-y-2.5 font-sans text-xs bg-black text-white select-none">
+      {/* Header */}
+      <div className="flex justify-between items-center border-b border-[#202020] pb-1.5">
+        <span className="text-[10px] text-mono text-white/50 tracking-wider uppercase">
+          ARM Artistry · Booking
+        </span>
+        <span className="text-[9px] text-[#FFC000] font-bold">Lambo UI</span>
+      </div>
+
+      {/* Slots Row */}
+      <div className="grid grid-cols-3 gap-1.5">
+        <div className="bg-[#181818] border border-[#202020] py-1 text-center rounded-xs text-[10px] text-white/40 line-through">
+          09:00 AM
+        </div>
+        <div
+          className={cn(
+            "py-1 text-center rounded-xs text-[10px] font-semibold transition-all duration-300 border",
+            bookingStep === 0
+              ? "bg-[#181818] border-[#202020] text-white"
+              : bookingStep >= 1
+              ? "bg-[#FFC000]/10 border-[#FFC000] text-[#FFC000] shadow-[0_0_8px_rgba(255,192,0,0.3)]"
+              : "bg-[#181818] border-[#202020] text-white"
+          )}
+        >
+          11:30 AM
+        </div>
+        <div className="bg-[#181818] border border-[#202020] py-1 text-center rounded-xs text-[10px] text-white/60">
+          03:00 PM
+        </div>
+      </div>
+
+      {/* Process telemtry */}
+      <div className="min-h-7 flex items-center justify-center">
+        {bookingStep === 1 && (
+          <div className="text-[10px] text-mono text-white/80 animate-fadeIn">
+            SELECTING SLOT → Requesting reservation...
+          </div>
+        )}
+        {bookingStep === 2 && (
+          <div className="text-[10px] text-mono text-[#FFC000] animate-pulse">
+            SUPABASE RPC → executing hold_slot() lock...
+          </div>
+        )}
+        {bookingStep === 3 && (
+          <div className="w-full text-center font-mono text-[9px] text-[#FFC000] bg-[#FFC000]/15 py-1 rounded-xs border border-[#FFC000]/30 animate-fadeIn">
+            Slot Locked for 15m (Atomic Concurrency) ✓
+          </div>
+        )}
       </div>
     </div>
   );
