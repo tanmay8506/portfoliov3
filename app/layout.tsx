@@ -1,11 +1,12 @@
 import type { Metadata } from "next";
-import { Instrument_Sans, JetBrains_Mono } from "next/font/google";
+import { Instrument_Sans, JetBrains_Mono, Cormorant_Garamond } from "next/font/google";
 import "./globals.css";
 import { CONFIG } from "@/portfolio.config";
 import { Nav } from "@/components/layout/nav";
 import { Footer } from "@/components/layout/footer";
 import { CanvasBackground } from "@/components/shared/canvas-background";
 import { ThemeProvider } from "@/components/context/theme-context";
+import { IntroAnimation } from "@/components/shared/intro-animation";
 
 const instrumentSans = Instrument_Sans({
   variable: "--font-instrument-sans",
@@ -15,6 +16,13 @@ const instrumentSans = Instrument_Sans({
 const jetbrainsMono = JetBrains_Mono({
   variable: "--font-jetbrains-mono",
   subsets: ["latin"],
+});
+
+const cormorantGaramond = Cormorant_Garamond({
+  variable: "--font-cormorant",
+  subsets: ["latin"],
+  weight: ["300", "400"],
+  display: "swap",
 });
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -40,10 +48,12 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${instrumentSans.variable} ${jetbrainsMono.variable} h-full antialiased scroll-smooth`}
+      className={`${instrumentSans.variable} ${jetbrainsMono.variable} ${cormorantGaramond.variable} h-full antialiased scroll-smooth`}
     >
       <body className="min-h-full flex flex-col bg-canvas text-ink font-sans relative">
         <ThemeProvider>
+          {/* Cinematic intro — plays once per session */}
+          <IntroAnimation />
           {/* Particle System Mesh (Behind everything) */}
           <CanvasBackground />
 
