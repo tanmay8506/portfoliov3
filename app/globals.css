@@ -16,8 +16,8 @@
   --color-accent-focus: #5e69d1;
   --color-success: #27a644;
 
-  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui;
-  --font-mono: var(--font-geist-mono), ui-monospace, SFMono-Regular;
+  --font-sans: var(--font-instrument-sans), ui-sans-serif, system-ui;
+  --font-mono: var(--font-jetbrains-mono), ui-monospace;
 
   --radius-xs: 4px;
   --radius-sm: 6px;
