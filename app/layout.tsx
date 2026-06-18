@@ -47,6 +47,11 @@ export default function RootLayout({
           {/* Particle System Mesh (Behind everything) */}
           <CanvasBackground />
 
+          {/* Premium Background Layer Overlays */}
+          <div className="fixed inset-0 pointer-events-none z-2 bg-grid" />
+          <div className="fixed inset-0 pointer-events-none z-3 bg-glow-1" />
+          <div className="fixed inset-0 pointer-events-none z-3 bg-glow-2" />
+
           {/* Global sticky header */}
           <Nav />
 

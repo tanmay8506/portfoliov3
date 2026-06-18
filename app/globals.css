@@ -45,12 +45,12 @@
 
 /* Dark Theme Selector */
 .theme-dark {
-  --canvas: #010102;
-  --surface-1: #0f1011;
-  --surface-2: #141516;
-  --surface-3: #18191a;
-  --hairline: #23252a;
-  --hairline-strong: #34343a;
+  --canvas: #08090c;
+  --surface-1: #0e1015;
+  --surface-2: #141720;
+  --surface-3: #1a1e28;
+  --hairline: rgba(255, 255, 255, 0.05);
+  --hairline-strong: rgba(255, 255, 255, 0.12);
   --ink: #f7f8f8;
   --ink-muted: #d0d6e0;
   --ink-subtle: #8a8f98;
@@ -120,6 +120,36 @@ body {
 
 .animate-scaleIn {
   animation: scaleIn 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Technical Grid & Ambient Glow Animations */
+@keyframes glow-pulse {
+  0%, 100% {
+    opacity: 0.25;
+    transform: scale(1) translate(0, 0);
+  }
+  50% {
+    opacity: 0.4;
+    transform: scale(1.06) translate(1%, -1%);
+  }
+}
+
+.bg-grid {
+  background-image: 
+    linear-gradient(var(--hairline) 1px, transparent 1px),
+    linear-gradient(90deg, var(--hairline) 1px, transparent 1px);
+  background-size: 56px 56px;
+  opacity: 0.35;
+}
+
+.bg-glow-1 {
+  background: radial-gradient(circle 450px at 20% 25%, rgba(94, 106, 210, 0.13), transparent 85%);
+  animation: glow-pulse 14s ease-in-out infinite;
+}
+
+.bg-glow-2 {
+  background: radial-gradient(circle 500px at 80% 75%, rgba(219, 68, 85, 0.07), transparent 85%);
+  animation: glow-pulse 18s ease-in-out infinite alternate;
 }
 
 /* Fluid Typography Utilities */
