@@ -1,8 +1,9 @@
 "use client";
 
-import React, { createContext, useContext, useState, useEffect } from "react";
+import React, { createContext, useContext, useEffect } from "react";
 
-type Theme = "alternating" | "dark";
+// Theme is permanently dark — no toggle
+type Theme = "dark";
 
 interface ThemeContextType {
   theme: Theme;
@@ -13,42 +14,18 @@ interface ThemeContextType {
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
-  const [theme, setThemeState] = useState<Theme>("alternating");
-  const [mounted, setMounted] = useState(false);
-
   useEffect(() => {
-    // Load theme from localStorage on client side mount
-    const savedTheme = localStorage.getItem("portfolio-theme") as Theme;
-    if (savedTheme === "dark" || savedTheme === "alternating") {
-      setThemeState(savedTheme);
-    }
-    setMounted(true);
+    // Lock to dark mode on every mount — no localStorage, no toggle
+    document.documentElement.classList.add("theme-dark");
+    localStorage.removeItem("portfolio-theme");
   }, []);
 
-  useEffect(() => {
-    if (!mounted) return;
-    
-    // Toggle html class based on theme
-    if (theme === "dark") {
-      document.documentElement.classList.add("theme-dark");
-    } else {
-      document.documentElement.classList.remove("theme-dark");
-    }
-  }, [theme, mounted]);
+  // No-op stubs kept so any component calling toggleTheme/setTheme doesn't break
+  const toggleTheme = () => {};
+  const setTheme = () => {};
 
-  const setTheme = (newTheme: Theme) => {
-    setThemeState(newTheme);
-    localStorage.setItem("portfolio-theme", newTheme);
-  };
-
-  const toggleTheme = () => {
-    const nextTheme = theme === "alternating" ? "dark" : "alternating";
-    setTheme(nextTheme);
-  };
-
-  // Prevent hydration mismatch by providing default context during server render
   return (
-    <ThemeContext.Provider value={{ theme, toggleTheme, setTheme }}>
+    <ThemeContext.Provider value={{ theme: "dark", toggleTheme, setTheme }}>
       {children}
     </ThemeContext.Provider>
   );

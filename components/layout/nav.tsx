@@ -3,14 +3,12 @@
 import React, { useState, useEffect } from "react";
 import { CONFIG } from "@/portfolio.config";
 import { cn } from "@/lib/utils";
-import { Menu, X, Sun, Moon } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { useTheme } from "@/components/context/theme-context";
 
 export function Nav() {
   const [activeSection, setActiveSection] = useState("");
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const { theme, toggleTheme } = useTheme();
 
   useEffect(() => {
     // Intersection Observer to track active section
@@ -119,17 +117,6 @@ export function Nav() {
 
           {/* Right Action Buttons (Desktop) */}
           <div className="hidden md:flex items-center space-x-3">
-            <button
-              onClick={toggleTheme}
-              className="p-2 rounded-full bg-surface-2 hover:bg-surface-3 text-ink-muted hover:text-ink border border-hairline hover:border-hairline-strong active:scale-95 transition-all duration-200 cursor-pointer flex items-center justify-center outline-hidden focus-visible:ring-2 focus-visible:ring-accent/50"
-              aria-label={theme === "dark" ? "Switch to mixed mode" : "Switch to dark mode"}
-            >
-              {theme === "dark" ? (
-                <Sun className="w-4 h-4 text-accent animate-scaleIn" />
-              ) : (
-                <Moon className="w-4 h-4 text-ink-subtle animate-scaleIn" />
-              )}
-            </button>
             <a href="/resume.pdf" target="_blank" rel="noopener noreferrer">
               <Button variant="secondary" size="sm">
                 Resume ↓
@@ -206,26 +193,7 @@ export function Nav() {
               );
             })}
 
-            {/* Mobile Theme Toggle Row */}
-            <div className="flex items-center justify-between py-1 border-b border-hairline/20 pb-4 mt-2">
-              <span className="text-body font-medium text-ink-muted">Theme</span>
-              <button
-                onClick={toggleTheme}
-                className="flex items-center space-x-2 px-3 py-1.5 rounded-full bg-surface-2 hover:bg-surface-3 text-ink-muted hover:text-ink border border-hairline cursor-pointer transition-all duration-200 active:scale-95"
-              >
-                {theme === "dark" ? (
-                  <>
-                    <Sun className="w-3.5 h-3.5 text-accent animate-scaleIn" />
-                    <span className="text-xs font-semibold">Dark Mode</span>
-                  </>
-                ) : (
-                  <>
-                    <Moon className="w-3.5 h-3.5 text-ink-subtle animate-scaleIn" />
-                    <span className="text-xs font-medium">Mixed Mode</span>
-                  </>
-                )}
-              </button>
-            </div>
+
           </div>
         </div>
 
