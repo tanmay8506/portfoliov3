@@ -43,7 +43,7 @@
   color: var(--ink);
 }
 
-/* Dark Theme Selector */
+/* Dark Theme Selector — scoped sections */
 .theme-dark {
   --canvas: #08090c;
   --surface-1: #0e1015;
@@ -55,6 +55,22 @@
   --ink-muted: #d0d6e0;
   --ink-subtle: #8a8f98;
   --ink-tertiary: #62666d;
+}
+
+/* Global Dark Mode — applied to html element by theme toggle button */
+html.theme-dark {
+  --canvas: #08090c;
+  --surface-1: #0e1015;
+  --surface-2: #141720;
+  --surface-3: #1a1e28;
+  --hairline: rgba(255, 255, 255, 0.05);
+  --hairline-strong: rgba(255, 255, 255, 0.12);
+  --ink: #f7f8f8;
+  --ink-muted: #d0d6e0;
+  --ink-subtle: #8a8f98;
+  --ink-tertiary: #62666d;
+  background-color: var(--canvas);
+  color: var(--ink);
 }
 
 body {
