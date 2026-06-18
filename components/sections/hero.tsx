@@ -60,7 +60,7 @@ export function Hero() {
             variants={itemVariants}
           >
             Building AI Agents <br />
-            <span className="text-accent caret-cursor">That Actually Work.</span>
+            <span className="text-accent">That Actually Work.</span>
           </motion.h1>
 
           {/* Element 3: Subheading */}

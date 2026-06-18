@@ -224,11 +224,5 @@ body {
   50% { opacity: 0; }
 }
 
-.caret-cursor::after {
-  content: " |";
-  display: inline-block;
-  color: var(--color-accent);
-  animation: caret-blink 1.1s step-end infinite;
-  font-weight: 400;
-}
+
 
