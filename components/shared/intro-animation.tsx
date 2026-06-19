@@ -1,18 +1,19 @@
 "use client";
 
-import React, { useEffect, useState, useCallback } from "react";
+import React, { useEffect, useState, useCallback, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 const NAME     = "TANMAY";
 const EXIT_MS  = 1500; // 1.5 seconds cinematic fade-out
 
 export function IntroAnimation() {
+  const videoRef = useRef<HTMLVideoElement>(null);
   const [visible,  setVisible]  = useState(true);
   const [exiting,  setExiting]  = useState(false);
   const [showSkip, setShowSkip] = useState(false);
   const [mounted,  setMounted]  = useState(false);
-  const [duration, setDuration] = useState(10.0); // default
-  const [fadeStartDelay, setFadeStartDelay] = useState(8500); // default (10.0 - 1.5) * 1000
+  const [duration, setDuration] = useState(6.554); // default based on actual asset duration
+  const [fadeStartDelay, setFadeStartDelay] = useState(5054); // default (6.554 - 1.5) * 1000
   const [videoPlaying, setVideoPlaying] = useState(false);
   const [playTimeoutId, setPlayTimeoutId] = useState<NodeJS.Timeout | null>(null);
 
@@ -31,7 +32,7 @@ export function IntroAnimation() {
     }
     const t1 = setTimeout(() => setShowSkip(true), 700);
     
-    // Safety fallback in case video fails or gets stuck
+    // Safety fallback in case video fails or gets stuck (15s to accommodate loading + playback)
     const fallbackTimeout = setTimeout(dismiss, 15000);
 
     return () => {
@@ -59,10 +60,12 @@ export function IntroAnimation() {
         transition={{ duration: EXIT_MS / 1000, ease: [0.4, 0, 0.2, 1] }}
       >
         <motion.video
+          ref={videoRef}
           src="/intro-ribbon.mp4"
           autoPlay
           muted
           playsInline
+          loop
           preload="auto"
           className="absolute inset-0 w-full h-full object-cover pointer-events-none"
           style={{ mixBlendMode: "screen" }}
@@ -71,14 +74,13 @@ export function IntroAnimation() {
           transition={{ duration: 0.8 }}
           onPlay={(e) => {
             setVideoPlaying(true);
-            const d = e.currentTarget.duration || 10.0;
+            const d = e.currentTarget.duration || 6.554;
             const delay = Math.max(1000, (d - (EXIT_MS / 1000)) * 1000);
             const timeoutId = setTimeout(dismiss, delay);
             setPlayTimeoutId(timeoutId);
           }}
-          onEnded={dismiss}
           onLoadedMetadata={(e) => {
-            const d = e.currentTarget.duration || 10.0;
+            const d = e.currentTarget.duration || 6.554;
             setDuration(d);
             setFadeStartDelay(Math.max(1000, (d - (EXIT_MS / 1000)) * 1000));
           }}
