@@ -4,15 +4,17 @@ import React, { useEffect, useState, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 const NAME     = "TANMAY";
-const EXIT_MS  = 900;
+const EXIT_MS  = 1500; // 1.5 seconds cinematic fade-out
 
 export function IntroAnimation() {
   const [visible,  setVisible]  = useState(true);
   const [exiting,  setExiting]  = useState(false);
   const [showSkip, setShowSkip] = useState(false);
   const [mounted,  setMounted]  = useState(false);
-  const [duration, setDuration] = useState(6.0); // fallback default
+  const [duration, setDuration] = useState(10.0); // default
+  const [fadeStartDelay, setFadeStartDelay] = useState(8500); // default (10.0 - 1.5) * 1000
   const [videoPlaying, setVideoPlaying] = useState(false);
+  const [playTimeoutId, setPlayTimeoutId] = useState<NodeJS.Timeout | null>(null);
 
   const dismiss = useCallback(() => {
     if (exiting) return;
@@ -28,14 +30,21 @@ export function IntroAnimation() {
       return;
     }
     const t1 = setTimeout(() => setShowSkip(true), 700);
+    
     // Safety fallback in case video fails or gets stuck
-    const fallbackTimeout = setTimeout(dismiss, 10000);
+    const fallbackTimeout = setTimeout(dismiss, 15000);
 
     return () => {
       clearTimeout(t1);
       clearTimeout(fallbackTimeout);
     };
   }, [dismiss]);
+
+  useEffect(() => {
+    return () => {
+      if (playTimeoutId) clearTimeout(playTimeoutId);
+    };
+  }, [playTimeoutId]);
 
   if (!mounted || !visible) return null;
 
@@ -60,10 +69,18 @@ export function IntroAnimation() {
           initial={{ opacity: 0 }}
           animate={{ opacity: videoPlaying ? 0.9 : 0 }}
           transition={{ duration: 0.8 }}
-          onPlay={() => setVideoPlaying(true)}
+          onPlay={(e) => {
+            setVideoPlaying(true);
+            const d = e.currentTarget.duration || 10.0;
+            const delay = Math.max(1000, (d - (EXIT_MS / 1000)) * 1000);
+            const timeoutId = setTimeout(dismiss, delay);
+            setPlayTimeoutId(timeoutId);
+          }}
           onEnded={dismiss}
           onLoadedMetadata={(e) => {
-            setDuration(e.currentTarget.duration);
+            const d = e.currentTarget.duration || 10.0;
+            setDuration(d);
+            setFadeStartDelay(Math.max(1000, (d - (EXIT_MS / 1000)) * 1000));
           }}
         />
 
@@ -131,7 +148,7 @@ export function IntroAnimation() {
                 animate={{ width: "100%" }}
                 transition={{
                   delay:    1.2,
-                  duration: Math.max(0.1, duration - 1.2 - (EXIT_MS / 1000)),
+                  duration: Math.max(0.1, (fadeStartDelay / 1000) - 1.2),
                   ease:     "linear",
                 }}
               />
