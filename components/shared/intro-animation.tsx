@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 
 const NAME     = "TANMAY";
 const EXIT_MS  = 1500; // 1.5 seconds cinematic fade-out
+const VIDEO_DUR = 10.0; // Hardlocked to 10 seconds (240 frames at 24fps)
 
 export function IntroAnimation() {
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -12,8 +13,11 @@ export function IntroAnimation() {
   const [exiting,  setExiting]  = useState(false);
   const [showSkip, setShowSkip] = useState(false);
   const [mounted,  setMounted]  = useState(false);
-  const [duration, setDuration] = useState(6.554); // default based on actual asset duration
-  const [fadeStartDelay, setFadeStartDelay] = useState(5054); // default (6.554 - 1.5) * 1000
+  
+  // Hardlock timings to ensure 100% consistent loading animation and fade-out
+  const [duration] = useState(VIDEO_DUR);
+  const [fadeStartDelay] = useState((VIDEO_DUR - EXIT_MS / 1000) * 1000); // 8500 ms
+  
   const [videoPlaying, setVideoPlaying] = useState(false);
   const [playTimeoutId, setPlayTimeoutId] = useState<NodeJS.Timeout | null>(null);
 
@@ -72,18 +76,12 @@ export function IntroAnimation() {
           initial={{ opacity: 0 }}
           animate={{ opacity: videoPlaying ? 0.9 : 0 }}
           transition={{ duration: 0.8 }}
-          onPlay={(e) => {
+          onPlay={() => {
             setVideoPlaying(true);
-            const d = e.currentTarget.duration || 6.554;
-            const delay = Math.max(1000, (d - (EXIT_MS / 1000)) * 1000);
-            const timeoutId = setTimeout(dismiss, delay);
+            const timeoutId = setTimeout(dismiss, fadeStartDelay);
             setPlayTimeoutId(timeoutId);
           }}
-          onLoadedMetadata={(e) => {
-            const d = e.currentTarget.duration || 6.554;
-            setDuration(d);
-            setFadeStartDelay(Math.max(1000, (d - (EXIT_MS / 1000)) * 1000));
-          }}
+          onEnded={dismiss}
         />
 
         {/* Name + subtitle */}
