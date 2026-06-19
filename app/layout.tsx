@@ -52,10 +52,10 @@ export default function RootLayout({
     >
       <body className="min-h-full flex flex-col bg-canvas text-ink font-sans relative">
         <ThemeProvider>
-          {/* Cinematic intro — plays once per session */}
-          <IntroAnimation />
-          {/* Particle System Mesh (Behind everything) */}
-          <CanvasBackground />
+          {/* Cinematic intro — disabled but kept in codebase */}
+          {/* <IntroAnimation /> */}
+          {/* Particle System Mesh — disabled but kept in codebase */}
+          {/* <CanvasBackground /> */}
 
           {/* Premium Background Layer Overlays */}
           <div className="fixed inset-0 pointer-events-none z-2 bg-grid" />
