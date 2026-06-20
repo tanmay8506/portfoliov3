@@ -267,6 +267,7 @@ function VisionaryWidget() {
   const [logs, setLogs] = useState<
     { method: string; path: string; status: number; time: string }[]
   >([]);
+  const indexRef = useRef(0);
 
   useEffect(() => {
     const list = [
@@ -277,9 +278,10 @@ function VisionaryWidget() {
       { method: "DELETE", path: "/api/session/logout", status: 204, time: "5ms" },
     ];
 
-    let timer = setInterval(() => {
+    const timer = setInterval(() => {
       setLogs((prev) => {
-        const nextLog = list[prev.length % list.length];
+        const nextLog = list[indexRef.current % list.length];
+        indexRef.current += 1;
         const nextList = [...prev, nextLog];
         if (nextList.length > 4) nextList.shift();
         return nextList;
@@ -362,6 +364,7 @@ function HrWidget({ accuracy }: { accuracy: string }) {
    6. StudyAI Widget: Syllabus Tags Cloud
    ========================================== */
 function StudyAiWidget() {
+  const [activeIdx, setActiveIdx] = useState(0);
   const tags = [
     "NEP 2022",
     "NLP",
@@ -373,23 +376,35 @@ function StudyAiWidget() {
     "Text Summarization",
   ];
 
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setActiveIdx((prev) => (prev + 1) % tags.length);
+    }, 1500);
+    return () => clearInterval(timer);
+  }, [tags.length]);
+
   return (
     <div className="w-full h-full p-4 flex flex-wrap gap-2 items-center justify-center select-none">
-      {tags.map((tag, idx) => (
-        <span
-          key={idx}
-          className={cn(
-            "px-2.5 py-1 rounded-sm text-mono text-[10px] font-semibold transition-all duration-300 hover:border-accent/50",
-            idx % 3 === 0
-              ? "bg-accent/15 border border-accent/20 text-accent-hover"
-              : idx % 3 === 1
-              ? "bg-surface-2 border border-hairline text-ink-muted"
-              : "bg-surface-3 border border-hairline/50 text-ink-subtle"
-          )}
-        >
-          {tag}
-        </span>
-      ))}
+      {tags.map((tag, idx) => {
+        const isActive = idx === activeIdx;
+        return (
+          <span
+            key={idx}
+            className={cn(
+              "px-2.5 py-1 rounded-sm text-mono text-[10px] font-semibold transition-all duration-300",
+              isActive
+                ? "bg-accent/25 border border-accent text-accent-hover shadow-[0_0_10px_rgba(94,106,210,0.25)] scale-105"
+                : idx % 3 === 0
+                ? "bg-accent/15 border border-accent/20 text-accent-hover"
+                : idx % 3 === 1
+                ? "bg-surface-2 border border-hairline text-ink-muted"
+                : "bg-surface-3 border border-hairline/50 text-ink-subtle"
+            )}
+          >
+            {tag}
+          </span>
+        );
+      })}
     </div>
   );
 }
@@ -524,12 +539,30 @@ function RagQueueWidget() {
    10. The Ink Widget: Blogging interface
    ========================================== */
 function TheInkWidget() {
+  const [status, setStatus] = useState("Draft");
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setStatus((s) => (s === "Draft" ? "Saving..." : s === "Saving..." ? "Saved ✓" : "Draft"));
+    }, 2500);
+    return () => clearInterval(timer);
+  }, []);
+
   return (
     <div className="w-full h-full p-4 flex flex-col justify-center space-y-2 font-sans text-xs select-none">
       <div className="bg-surface-2 border border-hairline rounded p-2.5 space-y-1.5 font-mono text-[10px]">
         <div className="flex justify-between border-b border-hairline/60 pb-1 text-ink-subtle">
           <span>Flask CMS Editor</span>
-          <span className="text-success">Admin Verified</span>
+          <span className={cn(
+            "transition-colors duration-300 font-semibold",
+            status === "Saved ✓"
+              ? "text-success"
+              : status === "Saving..."
+              ? "text-accent animate-pulse"
+              : "text-ink-subtle"
+          )}>
+            {status}
+          </span>
         </div>
         <div className="text-ink">
           <span className="text-accent-hover font-semibold">Title:</span> My First Blog Post
