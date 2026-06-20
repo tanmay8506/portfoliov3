@@ -3,7 +3,6 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { CONFIG } from "@/portfolio.config";
-import { StatusPill } from "@/components/shared/status-pill";
 import { TerminalWidget } from "@/components/shared/terminal-widget";
 import { Button } from "@/components/ui/button";
 
@@ -49,10 +48,6 @@ export function Hero() {
           initial="hidden"
           animate="visible"
         >
-          {/* Element 1: Status Pill */}
-          <motion.div variants={itemVariants}>
-            <StatusPill />
-          </motion.div>
 
           {/* Element 2: H1 Title */}
           <motion.h1

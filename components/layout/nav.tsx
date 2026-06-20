@@ -54,7 +54,7 @@ export function Nav() {
 
     const observer = new IntersectionObserver(handleIntersection, observerOptions);
 
-    const sections = ["hero", "projects", "skills", "certifications", "education", "contact"];
+    const sections = ["hero", "about", "projects", "skills", "certifications", "education", "contact"];
     sections.forEach((id) => {
       const el = document.getElementById(id);
       if (el) observer.observe(el);
@@ -155,7 +155,7 @@ export function Nav() {
             onClick={handleContactClick}
             className="ml-2 bg-accent hover:bg-accent-focus text-white text-sm font-medium px-5 py-2.5 rounded-full transition-colors cursor-pointer"
           >
-            Hire Me
+            Contact
           </button>
         </div>
 
@@ -273,7 +273,7 @@ export function Nav() {
               onClick={handleContactClick}
               className="mt-2 w-full bg-accent hover:bg-accent-focus text-white text-body font-semibold px-5 py-3 rounded-full transition-colors cursor-pointer"
             >
-              Hire Me
+              Contact
             </button>
           </div>
         </div>

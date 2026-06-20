@@ -1,5 +1,6 @@
 import React from "react";
 import { Hero } from "@/components/sections/hero";
+import { About } from "@/components/sections/about";
 import { Projects } from "@/components/sections/projects";
 import { Skills } from "@/components/sections/skills";
 import { Certifications } from "@/components/sections/certifications";
@@ -11,6 +12,9 @@ export default function Home() {
     <div className="flex flex-col w-full">
       {/* Hero Section */}
       <Hero />
+
+      {/* About Me Section */}
+      <About />
 
       {/* Projects Section */}
       <Projects />

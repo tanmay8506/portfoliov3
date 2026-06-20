@@ -37,6 +37,13 @@ export interface ToolTag {
   name: string;
 }
 
+export interface AboutStats {
+  projectsBuilt: string;
+  certifications: string;
+  yearsCoding: string;
+  repositories: string;
+}
+
 export const CONFIG = {
   name: "Tanmay Gemini",
   title: "AI Product Engineer",
@@ -48,6 +55,12 @@ export const CONFIG = {
   location: "New Delhi",
   available: true,
   currentlyBuilding: ["AlgoGenie v2", "LitRev v2"],
+  aboutStats: {
+    projectsBuilt: "12+",
+    certifications: "4",
+    yearsCoding: "3+",
+    repositories: "15+",
+  } as AboutStats,
 
   seo: {
     title: "Tanmay Gemini — AI Product Engineer | Multi-Agent Systems",
@@ -254,10 +267,10 @@ export const CONFIG = {
   },
 
   nav: [
+    { label: "About", href: "#about" },
     { label: "Work", href: "#projects" },
     { label: "Skills", href: "#skills" },
     { label: "Certifications", href: "#certifications" },
     { label: "Education", href: "#education" },
-    { label: "Contact", href: "#contact" },
   ],
 } as const;
