@@ -94,7 +94,7 @@ export function Projects() {
               <div
                 key={project.id}
                 className={cn(
-                  "transition-all duration-500 transform",
+                  "transition-all duration-500 transform h-full",
                   project.gridArea,
                   matchesFilter
                     ? "opacity-100 translate-y-0 scale-100"
