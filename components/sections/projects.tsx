@@ -31,11 +31,11 @@ export function Projects() {
     } else if (proj.id === "litrev") {
       gridArea = "md:col-span-1 md:row-span-1";
     } else if (proj.id === "personabot") {
-      gridArea = "md:col-span-1 md:row-span-1";
+      gridArea = "md:col-span-1 md:row-span-2";
     } else if (proj.id === "hr-absenteeism") {
       gridArea = "md:col-span-1 md:row-span-1";
     } else if (proj.id === "visionary") {
-      gridArea = "md:col-span-1 md:row-span-2";
+      gridArea = "md:col-span-1 md:row-span-1";
     } else if (proj.id === "studyai") {
       gridArea = "md:col-span-2 md:row-span-1";
     }
