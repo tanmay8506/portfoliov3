@@ -73,6 +73,47 @@ export const CONFIG = {
 
   projects: [
     {
+      id: "studyai",
+      title: "StudyAI",
+      description:
+        "Generates structured study notes from past exam papers for Delhi University B.Sc. NEP/UGCF 2022.",
+      stack: ["Python", "NLP", "PDF", "DU"],
+      category: "ML + Data",
+      github: "https://github.com/tanmay8506",
+      innerWidget: "studyai",
+    },
+    {
+      id: "personabot",
+      title: "PersonaBot",
+      description:
+        "Upload a WhatsApp or HTML chat export. Talk to a digital clone of anyone in it.",
+      stack: ["Groq", "Python", "NLP", "Gradio"],
+      category: "Agentic AI",
+      github: "https://github.com/tanmay8506",
+      innerWidget: "personabot",
+    },
+    {
+      id: "arm-artistry",
+      title: "ARM Artistry",
+      description:
+        "Commercial makeup atelier booking system. Features Supabase Auth, PostgreSQL schema with atomic hold slot reservation transactions, and design guidelines inspired by Lamborghini.",
+      stack: ["Next.js", "Supabase", "PostgreSQL", "Tailwind CSS", "Playwright"],
+      category: "Full-Stack",
+      github: "https://github.com/tanmay8506",
+      innerWidget: "arm-artistry",
+      featured: true,
+    },
+    {
+      id: "visionary",
+      title: "Visionary",
+      description:
+        "Full-stack web app with user authentication, protected routes, PostgreSQL persistence, JWT tokens.",
+      stack: ["React", "Express", "PostgreSQL", "JWT"],
+      category: "Full-Stack",
+      github: "https://github.com/tanmay8506",
+      innerWidget: "visionary",
+    },
+    {
       id: "algogenie",
       title: "AlgoGenie",
       description:
@@ -93,6 +134,17 @@ export const CONFIG = {
       github: "https://github.com/tanmay8506",
       innerWidget: "vibe-coder",
       featured: true,
+    },
+    {
+      id: "hr-absenteeism",
+      title: "HR Absenteeism Predictor",
+      description:
+        "End-to-end ML pipeline on 700 HR records. Predicts binary absenteeism. FastAPI REST with Tableau export.",
+      stack: ["FastAPI", "Scikit-learn", "SQLite", "Tableau"],
+      category: "ML + Data",
+      github: "https://github.com/tanmay8506",
+      innerWidget: "hr",
+      accuracy: "76.43%",
     },
     {
       id: "langgraph-hitl",
@@ -135,17 +187,6 @@ export const CONFIG = {
       innerWidget: "flight-finder",
     },
     {
-      id: "arm-artistry",
-      title: "ARM Artistry",
-      description:
-        "Commercial makeup atelier booking system. Features Supabase Auth, PostgreSQL schema with atomic hold slot reservation transactions, and design guidelines inspired by Lamborghini.",
-      stack: ["Next.js", "Supabase", "PostgreSQL", "Tailwind CSS", "Playwright"],
-      category: "Full-Stack",
-      github: "https://github.com/tanmay8506",
-      innerWidget: "arm-artistry",
-      featured: true,
-    },
-    {
       id: "litrev",
       title: "LitRev",
       description:
@@ -154,47 +195,6 @@ export const CONFIG = {
       category: "Agentic AI",
       github: "https://github.com/tanmay8506",
       innerWidget: "litrev",
-    },
-    {
-      id: "personabot",
-      title: "PersonaBot",
-      description:
-        "Upload a WhatsApp or HTML chat export. Talk to a digital clone of anyone in it.",
-      stack: ["Groq", "Python", "NLP", "Gradio"],
-      category: "Agentic AI",
-      github: "https://github.com/tanmay8506",
-      innerWidget: "personabot",
-    },
-    {
-      id: "visionary",
-      title: "Visionary",
-      description:
-        "Full-stack web app with user authentication, protected routes, PostgreSQL persistence, JWT tokens.",
-      stack: ["React", "Express", "PostgreSQL", "JWT"],
-      category: "Full-Stack",
-      github: "https://github.com/tanmay8506",
-      innerWidget: "visionary",
-    },
-    {
-      id: "hr-absenteeism",
-      title: "HR Absenteeism Predictor",
-      description:
-        "End-to-end ML pipeline on 700 HR records. Predicts binary absenteeism. FastAPI REST with Tableau export.",
-      stack: ["FastAPI", "Scikit-learn", "SQLite", "Tableau"],
-      category: "ML + Data",
-      github: "https://github.com/tanmay8506",
-      innerWidget: "hr",
-      accuracy: "76.43%",
-    },
-    {
-      id: "studyai",
-      title: "StudyAI",
-      description:
-        "Generates structured study notes from past exam papers for Delhi University B.Sc. NEP/UGCF 2022.",
-      stack: ["Python", "NLP", "PDF", "DU"],
-      category: "ML + Data",
-      github: "https://github.com/tanmay8506",
-      innerWidget: "studyai",
     },
   ] as (Project & { accuracy?: string })[],
 
