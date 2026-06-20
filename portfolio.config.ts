@@ -46,7 +46,7 @@ export interface AboutStats {
 
 export const CONFIG = {
   name: "Tanmay Gemini",
-  title: "AI Product Engineer",
+  title: "Agentic AI & Full Stack Developer",
   tagline: "Building AI Agents That Actually Work.",
   subhead: "Python + LangGraph + AutoGen. Multi-agent systems shipped to production, not demos.",
   email: "tanmay8506@gmail.com",
