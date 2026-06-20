@@ -125,17 +125,6 @@ export const CONFIG = {
       featured: true,
     },
     {
-      id: "vibe-coder",
-      title: "Vibe Coder",
-      description:
-        "Voice-controlled AI coding assistant. Speaks coding requests, runs a LangGraph agent workflow, and reads responses back using TTS.",
-      stack: ["LangGraph", "Python", "SpeechRecognition", "gTTS"],
-      category: "Agentic AI",
-      github: "https://github.com/tanmay8506",
-      innerWidget: "vibe-coder",
-      featured: true,
-    },
-    {
       id: "hr-absenteeism",
       title: "HR Absenteeism Predictor",
       description:
@@ -145,6 +134,17 @@ export const CONFIG = {
       github: "https://github.com/tanmay8506",
       innerWidget: "hr",
       accuracy: "76.43%",
+    },
+    {
+      id: "vibe-coder",
+      title: "Vibe Coder",
+      description:
+        "Voice-controlled AI coding assistant. Speaks coding requests, runs a LangGraph agent workflow, and reads responses back using TTS.",
+      stack: ["LangGraph", "Python", "SpeechRecognition", "gTTS"],
+      category: "Agentic AI",
+      github: "https://github.com/tanmay8506",
+      innerWidget: "vibe-coder",
+      featured: true,
     },
     {
       id: "langgraph-hitl",
