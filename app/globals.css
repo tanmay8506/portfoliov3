@@ -11,9 +11,9 @@
   --color-ink-muted: var(--ink-muted);
   --color-ink-subtle: var(--ink-subtle);
   --color-ink-tertiary: var(--ink-tertiary);
-  --color-accent: #5e6ad2;
-  --color-accent-hover: #828fff;
-  --color-accent-focus: #5e69d1;
+  --color-accent: #00f5a0;
+  --color-accent-hover: #b026ff;
+  --color-accent-focus: #00db8f;
   --color-success: #27a644;
 
   --font-sans: var(--font-plus-jakarta), ui-sans-serif, system-ui;
@@ -29,16 +29,16 @@
 
 /* Default Theme: Dark Mode (Google Antigravity palette) */
 :root {
-  --canvas: #08090c;
-  --surface-1: #0e1015;
-  --surface-2: #141720;
-  --surface-3: #1a1e28;
+  --canvas: #050608;
+  --surface-1: #0c0d12;
+  --surface-2: #12141a;
+  --surface-3: #181b24;
   --hairline: rgba(255, 255, 255, 0.05);
   --hairline-strong: rgba(255, 255, 255, 0.12);
-  --ink: #f7f8f8;
-  --ink-muted: #d0d6e0;
-  --ink-subtle: #8a8f98;
-  --ink-tertiary: #62666d;
+  --ink: #f9fafc;
+  --ink-muted: #dcdde4;
+  --ink-subtle: #9fa2b2;
+  --ink-tertiary: #6a6d7d;
 
   background-color: var(--canvas);
   color: var(--ink);
@@ -104,7 +104,7 @@ body {
 
 /* Selection tint */
 ::selection {
-  background-color: rgba(94, 106, 210, 0.2);
+  background-color: rgba(0, 245, 160, 0.2);
   color: var(--color-ink);
 }
 
@@ -160,12 +160,12 @@ body {
 }
 
 .bg-glow-1 {
-  background: radial-gradient(circle 450px at 20% 25%, rgba(94, 106, 210, 0.13), transparent 85%);
+  background: radial-gradient(circle 450px at 20% 25%, rgba(0, 245, 160, 0.09), transparent 85%);
   animation: glow-pulse 14s ease-in-out infinite;
 }
 
 .bg-glow-2 {
-  background: radial-gradient(circle 500px at 80% 75%, rgba(219, 68, 85, 0.07), transparent 85%);
+  background: radial-gradient(circle 500px at 80% 75%, rgba(176, 38, 255, 0.07), transparent 85%);
   animation: glow-pulse 18s ease-in-out infinite alternate;
 }
 
