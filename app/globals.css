@@ -16,9 +16,9 @@
   --color-accent-focus: #5e69d1;
   --color-success: #27a644;
 
-  --font-sans: var(--font-instrument-sans), ui-sans-serif, system-ui;
+  --font-sans: var(--font-plus-jakarta), ui-sans-serif, system-ui;
+  --font-display: var(--font-outfit), ui-sans-serif, system-ui;
   --font-mono: var(--font-jetbrains-mono), ui-monospace;
-  --font-serif: var(--font-cormorant), "Cormorant Garamond", Georgia, serif;
 
   --radius-xs: 4px;
   --radius-sm: 6px;
@@ -222,6 +222,16 @@ body {
 @keyframes caret-blink {
   from, to { opacity: 1; }
   50% { opacity: 0; }
+}
+
+/* Global Heading Typography */
+h1, h2, h3, h4, h5, h6, .text-display-xl, .text-display-lg, .text-display-md, .text-headline, .text-card-title {
+  font-family: var(--font-display), sans-serif;
+}
+
+/* Support for text-mono classes */
+@utility text-mono {
+  font-family: var(--font-mono);
 }
 
 

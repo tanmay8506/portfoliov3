@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Instrument_Sans, JetBrains_Mono, Cormorant_Garamond } from "next/font/google";
+import { Outfit, Plus_Jakarta_Sans, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import { CONFIG } from "@/portfolio.config";
 import { Nav } from "@/components/layout/nav";
@@ -8,20 +8,23 @@ import { CanvasBackground } from "@/components/shared/canvas-background";
 import { ThemeProvider } from "@/components/context/theme-context";
 import { IntroAnimation } from "@/components/shared/intro-animation";
 
-const instrumentSans = Instrument_Sans({
-  variable: "--font-instrument-sans",
+const outfit = Outfit({
+  variable: "--font-outfit",
   subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700"],
+  display: "swap",
+});
+
+const plusJakartaSans = Plus_Jakarta_Sans({
+  variable: "--font-plus-jakarta",
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700"],
+  display: "swap",
 });
 
 const jetbrainsMono = JetBrains_Mono({
   variable: "--font-jetbrains-mono",
   subsets: ["latin"],
-});
-
-const cormorantGaramond = Cormorant_Garamond({
-  variable: "--font-cormorant",
-  subsets: ["latin"],
-  weight: ["300", "400"],
   display: "swap",
 });
 
@@ -48,7 +51,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${instrumentSans.variable} ${jetbrainsMono.variable} ${cormorantGaramond.variable} theme-dark h-full antialiased scroll-smooth`}
+      className={`${outfit.variable} ${plusJakartaSans.variable} ${jetbrainsMono.variable} theme-dark h-full antialiased scroll-smooth`}
     >
       <body className="min-h-full flex flex-col bg-canvas text-ink font-sans relative">
         <ThemeProvider>
