@@ -20,11 +20,17 @@ export interface Skill {
   percentage: number;
 }
 
-export interface TimelineEntry {
+export interface CertificationEntry {
   year: string;
   title: string;
-  subtitle: string;
-  description: string;
+  issuer: string;
+  icon: string;
+}
+
+export interface EducationEntry {
+  years: string;
+  degree: string;
+  institution: string;
 }
 
 export interface ToolTag {
@@ -197,32 +203,50 @@ export const CONFIG = {
     "Asyncio", "Knex",
   ],
 
-  timeline: [
+  certifications: [
     {
-      year: "2024",
-      title: "Udemy — AI Agents in Python Certificate",
-      subtitle: "LangGraph, AutoGen, Multi-Agent Orchestration",
-      description: "Deep-dive into production-grade agent systems, tool use, and multi-agent coordination patterns.",
+      year: "2026",
+      title: "Agentic AI Systems via Microsoft Autogen",
+      issuer: "KRSHAI Tech Pvt. · Udemy",
+      icon: "robot",
+    },
+    {
+      year: "2025",
+      title: "Complete Data Science Bootcamp",
+      issuer: "365 Careers · Udemy",
+      icon: "chart",
     },
     {
       year: "2024",
-      title: "Acharya Narendra Dev College",
-      subtitle: "B.Sc. (Hons) Computer Science",
-      description: "Data Structures, OS, DBMS, Web Technologies, Python.",
+      title: "100 Days of Code: Complete Python Pro Bootcamp",
+      issuer: "Dr. Angela Yu · Udemy",
+      icon: "code",
     },
     {
       year: "2023",
-      title: "Started building AI-first products full-time",
-      subtitle: "AlgoGenie, LitRev, PersonaBot shipped to GitHub",
-      description: "Moved from learning to shipping. Three production-grade agent systems built and open-sourced.",
+      title: "Complete Web Development Bootcamp",
+      issuer: "Andre Neagoie · Udemy",
+      icon: "globe",
+    },
+  ] as CertificationEntry[],
+
+  education: [
+    {
+      years: "2022 - 2025",
+      degree: "Bachelor of Science (Graduation)",
+      institution: "Acharya Narendra Dev College · University of Delhi",
     },
     {
-      year: "2022",
-      title: "First Python project",
-      subtitle: "100 Days of Code",
-      description: "Started the journey. Built discipline through consistency.",
+      years: "2022",
+      degree: "Senior Secondary — PCM + Computer Science",
+      institution: "St. George's School · Alaknanda, New Delhi",
     },
-  ] as TimelineEntry[],
+    {
+      years: "2020",
+      degree: "Secondary School",
+      institution: "St. George's School · Alaknanda, New Delhi",
+    },
+  ] as EducationEntry[],
 
   agentTicker: {
     tools: 12,
@@ -232,7 +256,8 @@ export const CONFIG = {
   nav: [
     { label: "Work", href: "#projects" },
     { label: "Skills", href: "#skills" },
-    { label: "Timeline", href: "#timeline" },
+    { label: "Certifications", href: "#certifications" },
+    { label: "Education", href: "#education" },
     { label: "Contact", href: "#contact" },
   ],
 } as const;

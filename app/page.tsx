@@ -2,7 +2,8 @@ import React from "react";
 import { Hero } from "@/components/sections/hero";
 import { Projects } from "@/components/sections/projects";
 import { Skills } from "@/components/sections/skills";
-import { Timeline } from "@/components/sections/timeline";
+import { Certifications } from "@/components/sections/certifications";
+import { Education } from "@/components/sections/education";
 import { Contact } from "@/components/sections/contact";
 
 export default function Home() {
@@ -17,8 +18,11 @@ export default function Home() {
       {/* Skills Section */}
       <Skills />
 
-      {/* Timeline Section */}
-      <Timeline />
+      {/* Certifications Section */}
+      <Certifications />
+
+      {/* Education Section */}
+      <Education />
 
       {/* Contact Section */}
       <Contact />

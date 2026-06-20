@@ -54,7 +54,7 @@ export function Nav() {
 
     const observer = new IntersectionObserver(handleIntersection, observerOptions);
 
-    const sections = ["hero", "projects", "skills", "timeline", "contact"];
+    const sections = ["hero", "projects", "skills", "certifications", "education", "contact"];
     sections.forEach((id) => {
       const el = document.getElementById(id);
       if (el) observer.observe(el);
