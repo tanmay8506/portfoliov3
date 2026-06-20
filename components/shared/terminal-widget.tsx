@@ -21,9 +21,9 @@ export function TerminalWidget() {
   const [currentLineText, setCurrentLineText] = useState("");
   const [currentLineIndex, setCurrentLineIndex] = useState(0);
   const [charIndex, setCharIndex] = useState(0);
-  const [isWaiting, setIsWaiting] = useState(false);
 
   const timerRef = useRef<NodeJS.Timeout | null>(null);
+  const isWaitingRef = useRef(false);
 
   useEffect(() => {
     // Tab visibility check helper
@@ -43,7 +43,7 @@ export function TerminalWidget() {
       document.removeEventListener("visibilitychange", handleVisibilityChange);
       if (timerRef.current) clearTimeout(timerRef.current);
     };
-  }, [currentLineIndex, charIndex, isWaiting]);
+  }, [currentLineIndex, charIndex]);
 
   const triggerNextStep = () => {
     if (document.hidden) return;
@@ -51,14 +51,14 @@ export function TerminalWidget() {
 
     // If we've shown all lines and are waiting to restart
     if (currentLineIndex >= BOOT_SEQUENCE.length) {
-      if (!isWaiting) {
-        setIsWaiting(true);
+      if (!isWaitingRef.current) {
+        isWaitingRef.current = true;
         timerRef.current = setTimeout(() => {
           setLines([]);
           setCurrentLineIndex(0);
           setCharIndex(0);
           setCurrentLineText("");
-          setIsWaiting(false);
+          isWaitingRef.current = false;
         }, 3000); // 3 seconds pause at completion
       }
       return;
