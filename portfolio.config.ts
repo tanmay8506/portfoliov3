@@ -199,21 +199,21 @@ export const CONFIG = {
   ] as (Project & { accuracy?: string })[],
 
   skills: [
-    { name: "AI Orchestration", level: "Expert", percentage: 95 },
     { name: "Multi-Agent Systems", level: "Expert", percentage: 98 },
-    { name: "LangGraph", level: "Advanced", percentage: 88 },
-    { name: "Python", level: "Expert", percentage: 97 },
-    { name: "JavaScript / TS", level: "Advanced", percentage: 85 },
-    { name: "FastAPI / Flask", level: "Advanced", percentage: 82 },
-    { name: "PostgreSQL / SQL", level: "Advanced", percentage: 80 },
-    { name: "Docker / Redis", level: "Proficient", percentage: 72 },
+    { name: "AI Orchestration", level: "Expert", percentage: 95 },
+    { name: "LangGraph / AutoGen", level: "Expert", percentage: 94 },
+    { name: "Python 3 / API Design", level: "Expert", percentage: 97 },
+    { name: "Full-Stack (React/Next)", level: "Advanced", percentage: 88 },
+    { name: "PostgreSQL / pgvector", level: "Advanced", percentage: 85 },
+    { name: "RAG & Vector Search", level: "Advanced", percentage: 90 },
+    { name: "Docker / Sandboxing", level: "Proficient", percentage: 75 },
   ] as Skill[],
 
   tools: [
-    "AutoGen", "LangGraph", "Pydantic AI", "Ollama", "Groq",
-    "React", "FastAPI", "Docker", "Redis", "SQLite",
-    "Playwright", "Tableau", "Scikit-Learn", "TensorFlow",
-    "Asyncio", "Knex",
+    "AutoGen (AG2)", "LangGraph", "LangChain", "Pydantic AI", "Ollama", "Groq",
+    "Next.js", "React", "FastAPI", "Express.js", "Supabase", "pgvector",
+    "PostgreSQL", "Docker", "Redis", "Playwright", "Selenium", "Tableau",
+    "Scikit-Learn", "TensorFlow", "Knex.js", "Cohere API", "Clarifai API"
   ],
 
   certifications: [
