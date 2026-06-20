@@ -48,7 +48,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${instrumentSans.variable} ${jetbrainsMono.variable} ${cormorantGaramond.variable} h-full antialiased scroll-smooth`}
+      className={`${instrumentSans.variable} ${jetbrainsMono.variable} ${cormorantGaramond.variable} theme-dark h-full antialiased scroll-smooth`}
     >
       <body className="min-h-full flex flex-col bg-canvas text-ink font-sans relative">
         <ThemeProvider>

@@ -27,8 +27,25 @@
   --radius-xl: 16px;
 }
 
-/* Default Theme: Light Mode (Google Antigravity palette) */
+/* Default Theme: Dark Mode (Google Antigravity palette) */
 :root {
+  --canvas: #08090c;
+  --surface-1: #0e1015;
+  --surface-2: #141720;
+  --surface-3: #1a1e28;
+  --hairline: rgba(255, 255, 255, 0.05);
+  --hairline-strong: rgba(255, 255, 255, 0.12);
+  --ink: #f7f8f8;
+  --ink-muted: #d0d6e0;
+  --ink-subtle: #8a8f98;
+  --ink-tertiary: #62666d;
+
+  background-color: var(--canvas);
+  color: var(--ink);
+}
+
+/* Light Theme Selector — scoped sections */
+.theme-light {
   --canvas: #f8f9fc;
   --surface-1: #ffffff;
   --surface-2: #eff2f7;
@@ -39,37 +56,20 @@
   --ink-muted: #2f3034;
   --ink-subtle: #6a6a71;
   --ink-tertiary: #aab1cc;
-
-  background-color: var(--canvas);
-  color: var(--ink);
 }
 
-/* Dark Theme Selector — scoped sections */
-.theme-dark {
-  --canvas: #08090c;
-  --surface-1: #0e1015;
-  --surface-2: #141720;
-  --surface-3: #1a1e28;
-  --hairline: rgba(255, 255, 255, 0.05);
-  --hairline-strong: rgba(255, 255, 255, 0.12);
-  --ink: #f7f8f8;
-  --ink-muted: #d0d6e0;
-  --ink-subtle: #8a8f98;
-  --ink-tertiary: #62666d;
-}
-
-/* Global Dark Mode — applied to html element by theme toggle button */
-html.theme-dark {
-  --canvas: #08090c;
-  --surface-1: #0e1015;
-  --surface-2: #141720;
-  --surface-3: #1a1e28;
-  --hairline: rgba(255, 255, 255, 0.05);
-  --hairline-strong: rgba(255, 255, 255, 0.12);
-  --ink: #f7f8f8;
-  --ink-muted: #d0d6e0;
-  --ink-subtle: #8a8f98;
-  --ink-tertiary: #62666d;
+/* Global Light Mode — if ever applied */
+html.theme-light {
+  --canvas: #f8f9fc;
+  --surface-1: #ffffff;
+  --surface-2: #eff2f7;
+  --surface-3: #e6eaf0;
+  --hairline: rgba(33, 34, 38, 0.08);
+  --hairline-strong: rgba(33, 34, 38, 0.16);
+  --ink: #121317;
+  --ink-muted: #2f3034;
+  --ink-subtle: #6a6a71;
+  --ink-tertiary: #aab1cc;
   background-color: var(--canvas);
   color: var(--ink);
 }
