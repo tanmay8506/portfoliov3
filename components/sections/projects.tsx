@@ -49,7 +49,7 @@ export function Projects() {
   return (
     <section
       id="projects"
-      className="w-full bg-canvas theme-dark border-b border-hairline py-24 select-none font-sans scroll-mt-14"
+      className="w-full theme-dark border-b border-hairline py-24 select-none font-sans scroll-mt-14"
     >
       <div className="max-w-[1280px] mx-auto px-6 w-full flex flex-col space-y-8">
         {/* Header Block: Rotating badge + H2 */}

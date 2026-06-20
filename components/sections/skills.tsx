@@ -13,7 +13,7 @@ export function Skills() {
   return (
     <section
       id="skills"
-      className="w-full bg-canvas border-b border-hairline py-24 select-none font-sans scroll-mt-14"
+      className="w-full border-b border-hairline py-24 select-none font-sans scroll-mt-14"
     >
       <div className="max-w-[1280px] mx-auto px-6 w-full flex flex-col space-y-12">
         {/* Title */}

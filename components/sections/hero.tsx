@@ -38,7 +38,7 @@ export function Hero() {
   return (
     <section
       id="hero"
-      className="w-full bg-canvas border-b border-hairline relative min-h-[100dvh] flex items-center justify-center pt-20 pb-16 overflow-hidden"
+      className="w-full border-b border-hairline relative min-h-[100dvh] flex items-center justify-center pt-20 pb-16 overflow-hidden"
     >
       <div className="max-w-[1280px] mx-auto px-6 w-full grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12 items-center z-10">
         {/* Left Column (55% / 7 cols) */}

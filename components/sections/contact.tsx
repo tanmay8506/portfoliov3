@@ -34,7 +34,7 @@ export function Contact() {
   return (
     <section
       id="contact"
-      className="w-full bg-canvas theme-dark py-24 select-none font-sans scroll-mt-14"
+      className="w-full theme-dark py-24 select-none font-sans scroll-mt-14"
     >
       <div className="max-w-[1280px] mx-auto px-6 w-full flex flex-col space-y-12">
         {/* Title */}
