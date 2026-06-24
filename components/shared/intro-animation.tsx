@@ -56,10 +56,10 @@ export function IntroAnimation() {
           key="intro"
           className="fixed inset-0 z-[9999] flex items-center justify-center overflow-hidden"
           style={{ backgroundColor: "#000000" }}
-          initial={{ opacity: 1 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          transition={{ duration: EXIT_MS / 1000, ease: [0.4, 0, 0.2, 1] }}
+          initial={{ y: "0%" }}
+          animate={{ y: "0%" }}
+          exit={{ y: "100%" }}
+          transition={{ duration: EXIT_MS / 1000, ease: [0.85, 0, 0.15, 1] }}
         >
           <motion.video
             ref={videoRef}
@@ -91,9 +91,9 @@ export function IntroAnimation() {
                   key={i}
                   className="text-white"
                   style={{
-                    fontFamily: "var(--font-cormorant), 'Cormorant Garamond', serif",
+                    fontFamily: "var(--font-outfit), sans-serif",
                     fontSize:   "clamp(4rem, 10vw, 9rem)",
-                    fontWeight: 300,
+                    fontWeight: 500,
                     lineHeight: 1,
                     textShadow:
                       "0 0 80px rgba(220,38,38,0.5), 0 0 30px rgba(220,38,38,0.2), 0 2px 8px rgba(0,0,0,0.9)",
@@ -115,9 +115,9 @@ export function IntroAnimation() {
             <motion.p
               style={{
                 fontFamily:    "var(--font-jetbrains-mono), 'JetBrains Mono', monospace",
-                fontSize:      "0.60rem",
-                letterSpacing: "0.40em",
-                color:         "rgba(255,255,255,0.28)",
+                fontSize:      "0.68rem",
+                letterSpacing: "0.42em",
+                color:         "rgba(255,255,255,0.48)",
                 textTransform: "uppercase",
               }}
               initial={{ opacity: 0 }}
