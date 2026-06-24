@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useEffect, useState, useRef } from "react";
+import { motion } from "framer-motion";
 import { Project } from "@/portfolio.config";
 import { cn } from "@/lib/utils";
 import { ExternalLink } from "lucide-react";
@@ -11,14 +12,66 @@ interface ProjectCardProps {
 }
 
 export function ProjectCard({ project }: ProjectCardProps) {
+  const cardRef = useRef<HTMLDivElement>(null);
+  const [rotateX, setRotateX] = useState(0);
+  const [rotateY, setRotateY] = useState(0);
+  const [glowX, setGlowX] = useState(0);
+  const [glowY, setGlowY] = useState(0);
+  const [isHovered, setIsHovered] = useState(false);
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (!cardRef.current) return;
+    const rect = cardRef.current.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+
+    setGlowX(x);
+    setGlowY(y);
+
+    const centerX = rect.width / 2;
+    const centerY = rect.height / 2;
+    const rX = ((y - centerY) / centerY) * -6; // max 6 degrees X rotation
+    const rY = ((x - centerX) / centerX) * 6;  // max 6 degrees Y rotation
+    setRotateX(rX);
+    setRotateY(rY);
+  };
+
+  const handleMouseEnter = () => setIsHovered(true);
+  const handleMouseLeave = () => {
+    setIsHovered(false);
+    setRotateX(0);
+    setRotateY(0);
+  };
+
   return (
-    <div
+    <motion.div
+      ref={cardRef}
+      onMouseMove={handleMouseMove}
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
+      animate={{
+        rotateX: rotateX,
+        rotateY: rotateY,
+        y: isHovered ? -5 : 0,
+      }}
+      transition={{ type: "spring", stiffness: 300, damping: 25 }}
+      style={{ transformStyle: "preserve-3d", perspective: 1000 }}
       className={cn(
-        "group relative flex flex-col justify-between overflow-hidden bg-surface-1 border border-hairline rounded-xl p-6 transition-all duration-300 hover:bg-surface-2 hover:border-hairline-strong h-full",
+        "group relative flex flex-col justify-between overflow-hidden bg-surface-1 border border-hairline rounded-xl p-6 transition-colors duration-300 hover:bg-surface-2/80 hover:border-hairline-strong h-full",
         project.gridArea || ""
       )}
     >
-      <div className="flex flex-col space-y-4">
+      {/* Dynamic Radial Glow Spot */}
+      {isHovered && (
+        <div
+          className="absolute pointer-events-none inset-0 z-0 opacity-15 transition-opacity duration-300"
+          style={{
+            background: `radial-gradient(circle 250px at ${glowX}px ${glowY}px, rgba(0, 245, 160, 0.45), transparent 80%)`,
+          }}
+        />
+      )}
+
+      <div className="flex flex-col space-y-4 relative z-10">
         {/* Category Label */}
         <div className="flex items-center justify-between">
           <span className="text-mono text-body-sm text-accent uppercase tracking-wider font-semibold">
@@ -72,7 +125,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
       </div>
 
       {/* Unique Custom Inner Widget Visual (No images!) */}
-      <div className="mt-6 w-full h-44 rounded-md border border-hairline/40 bg-canvas overflow-hidden relative flex items-center justify-center">
+      <div className="mt-6 w-full h-44 rounded-md border border-hairline/40 bg-canvas overflow-hidden relative z-10 flex items-center justify-center">
         {project.innerWidget === "algogenie" && <AlgoGenieWidget />}
         {project.innerWidget === "vibe-coder" && <VibeCoderWidget />}
         {project.innerWidget === "langgraph-hitl" && <LangGraphHitlWidget />}
@@ -88,7 +141,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
         )}
         {project.innerWidget === "studyai" && <StudyAiWidget />}
       </div>
-    </div>
+    </motion.div>
   );
 }
 

@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import { motion } from "framer-motion";
 import { CONFIG } from "@/portfolio.config";
 import { SkillBar } from "@/components/shared/skill-bar";
 import { Terminal } from "lucide-react";
@@ -15,7 +16,13 @@ export function Skills() {
       id="skills"
       className="w-full border-b border-hairline py-24 select-none font-sans scroll-mt-14"
     >
-      <div className="max-w-[1280px] mx-auto px-6 w-full flex flex-col space-y-12">
+      <motion.div
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-100px" }}
+        transition={{ duration: 0.6, ease: "easeOut" }}
+        className="max-w-[1280px] mx-auto px-6 w-full flex flex-col space-y-12"
+      >
         {/* Title */}
         <div>
           <h2 className="text-display-lg font-semibold text-ink tracking-tight">
@@ -30,11 +37,24 @@ export function Skills() {
             <h3 className="text-headline font-semibold text-ink-muted">
               Core Skills
             </h3>
-            <div className="space-y-5">
+            <motion.div
+              variants={{
+                hidden: {},
+                visible: {
+                  transition: {
+                    staggerChildren: 0.08,
+                  },
+                },
+              }}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              className="space-y-5"
+            >
               {skills.map((skill) => (
                 <SkillBar key={skill.name} skill={skill} />
               ))}
-            </div>
+            </motion.div>
           </div>
 
           {/* Right Column: Tool Cloud & Agent Telemetry Dashboard (5 cols) */}
@@ -92,7 +112,7 @@ export function Skills() {
             </div>
           </div>
         </div>
-      </div>
+      </motion.div>
     </section>
   );
 }
