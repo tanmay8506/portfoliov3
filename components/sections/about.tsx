@@ -55,10 +55,10 @@ export function About() {
           {/* Left Column: Professional Summary (7 cols) */}
           <motion.div className="md:col-span-7 flex flex-col space-y-6" variants={itemVariants}>
             <p className="text-body-lg text-ink-muted leading-relaxed text-balance">
-              I am an New Delhi-based **AI Product Engineer** specializing in the architecture of stateful, autonomous multi-agent systems and full-stack AI products.
+              I am a New Delhi-based <strong className="text-ink font-semibold">AI Product Engineer</strong> specializing in the architecture of stateful, autonomous multi-agent systems and full-stack AI products.
             </p>
             <p className="text-body text-ink-subtle leading-relaxed">
-              My work focuses on bridging the gap between raw AI capabilities and reliable, production-ready software. Instead of building superficial AI wrapper demos, I design robust agentic loops using **AutoGen** and **LangGraph**, containerize code execution inside secure **Docker sandboxes**, and configure high-performance, asynchronous RAG ingestion pipelines.
+              My work focuses on bridging the gap between raw AI capabilities and reliable, production-ready software. Instead of building superficial AI wrapper demos, I design robust agentic loops using <strong className="text-ink font-semibold">AutoGen</strong> and <strong className="text-ink font-semibold">LangGraph</strong>, containerize code execution inside secure <strong className="text-ink font-semibold">Docker sandboxes</strong>, and configure high-performance, asynchronous RAG ingestion pipelines.
             </p>
             <p className="text-body text-ink-subtle leading-relaxed">
               Obsessed with system observability, latency reduction, and deterministic flow control, I ensure that the probabilistic outputs of large language models are safely bounded and integrated within elegant, high-fidelity user experiences.
