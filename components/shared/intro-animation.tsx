@@ -5,7 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 
 const NAME     = "TANMAY";
 const EXIT_MS  = 1500; // 1.5 seconds cinematic fade-out
-const VIDEO_DUR = 10.0; // Hardlocked to 10 seconds (240 frames at 24fps)
+const VIDEO_DUR = 6.55; // Match actual video duration of 6.554s
 
 export function IntroAnimation() {
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -69,7 +69,6 @@ export function IntroAnimation() {
           autoPlay
           muted
           playsInline
-          loop
           preload="auto"
           className="absolute inset-0 w-full h-full object-cover pointer-events-none"
           style={{ mixBlendMode: "screen" }}
