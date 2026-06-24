@@ -91,9 +91,9 @@ export function IntroAnimation() {
                   key={i}
                   className="text-white"
                   style={{
-                    fontFamily: "var(--font-outfit), sans-serif",
+                    fontFamily: "var(--font-cormorant), 'Cormorant Garamond', serif",
                     fontSize:   "clamp(4rem, 10vw, 9rem)",
-                    fontWeight: 500,
+                    fontWeight: 400,
                     lineHeight: 1,
                     textShadow:
                       "0 0 80px rgba(220,38,38,0.5), 0 0 30px rgba(220,38,38,0.2), 0 2px 8px rgba(0,0,0,0.9)",

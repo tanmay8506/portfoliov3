@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Outfit, Plus_Jakarta_Sans, JetBrains_Mono } from "next/font/google";
+import { Outfit, Plus_Jakarta_Sans, JetBrains_Mono, Cormorant_Garamond } from "next/font/google";
 import "./globals.css";
 import { CONFIG } from "@/portfolio.config";
 import { Nav } from "@/components/layout/nav";
@@ -28,6 +28,13 @@ const jetbrainsMono = JetBrains_Mono({
   display: "swap",
 });
 
+const cormorant = Cormorant_Garamond({
+  variable: "--font-cormorant",
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700"],
+  display: "swap",
+});
+
 export async function generateMetadata(): Promise<Metadata> {
   return {
     title: CONFIG.seo.title,
@@ -51,7 +58,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${outfit.variable} ${plusJakartaSans.variable} ${jetbrainsMono.variable} theme-dark h-full antialiased scroll-smooth`}
+      className={`${outfit.variable} ${plusJakartaSans.variable} ${jetbrainsMono.variable} ${cormorant.variable} theme-dark h-full antialiased scroll-smooth`}
     >
       <body className="min-h-full flex flex-col bg-canvas text-ink font-sans relative">
         <ThemeProvider>
