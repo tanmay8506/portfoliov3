@@ -57,8 +57,7 @@ export default function RootLayout({
         <ThemeProvider>
           {/* Cinematic intro — plays once per session */}
           <IntroAnimation />
-          {/* Particle System Mesh (Behind everything) */}
-          <CanvasBackground />
+
 
           {/* Premium Background Layer Overlays */}
           <div className="fixed inset-0 pointer-events-none z-2 bg-grid" />
